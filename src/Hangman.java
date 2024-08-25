@@ -103,9 +103,7 @@ public class Hangman {
         StringBuilder hiddenWord = new StringBuilder();
 
         //creates word hidden by underscores to be unlocked
-        for (int i = 0; i < word.length(); i++) {
-            hiddenWord.append("_");
-        }
+        hiddenWord.append("_".repeat(word.length()));
 
         //ensures that hidden word is the same size as the random word chosen for the game
         if (hiddenWord.length() != word.length()){
@@ -114,8 +112,6 @@ public class Hangman {
 
         return hiddenWord;
     }
-
-
     /*public String formatHiddenWord(String hiddenWord){
         StringBuilder formatted = new StringBuilder();
         for(int i = 0; i < hiddenWord.length(); i++){

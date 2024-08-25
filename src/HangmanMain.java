@@ -17,7 +17,6 @@ public class HangmanMain
         while (running) {
             System.out.println("Enter: 1 to View Rules -- 2 to Start Game -- 0 to Quit\n");
 
-
             int choice = game.input.nextInt();
 
             switch (choice) {
