@@ -39,7 +39,6 @@ public class Hangman {
         System.out.println("\n"+ hiddenWord + "\n");
 
         while (incorrectGuesses < maxGuesses ){
-            boolean guessedCorrectly = false;
 
             //handles case insensitivity for user input
             char guess = getUserGuess();
@@ -49,8 +48,9 @@ public class Hangman {
             }
             else {
                 guessedLetters.add(guess);
-                guessedCorrectly = updateHiddenWord(randomWord,hiddenWord,guess);
+                boolean guessedCorrectly = updateHiddenWord(randomWord,hiddenWord,guess);
                 System.out.println(hiddenWord.toString().toUpperCase());
+                System.out.println("Letter Bank: " + guessedLetters);
 
                 //Wrong entry condition
                 if (!guessedCorrectly) {
@@ -115,44 +115,6 @@ public class Hangman {
         return hiddenWord;
     }
 
-    public static void main(String[] args) {
-
-        Hangman game = new Hangman();
-        //number of incorrect guesses allowed
-
-        //Boolean to determine if game is running or not
-        boolean running = true;
-//--------------------------------------
-
-        System.out.println("Welcome to Hangman v1\n");
-
-
-
-
-        while (running) {
-            System.out.println("Enter: 1 to View Rules -- 2 to Start Game -- 0 to Quit\n");
-
-
-            int choice = game.input.nextInt();
-
-            switch (choice){
-                case 1: HangmanRules.displayRules();
-                    break;
-
-                case 2: System.out.println("Game Starting");
-                    game.startGame();
-                    break;
-
-                case 0: running = false;
-                    break;
-
-                default: System.out.println("Illegal character pressed\n");
-            }
-        }
-
-        System.out.println("Thank you for playing.");
-
-    }
 
     /*public String formatHiddenWord(String hiddenWord){
         StringBuilder formatted = new StringBuilder();
