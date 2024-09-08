@@ -1,3 +1,5 @@
+//import java.util.InputMismatchException;
+
 public class HangmanMain
 {
     public static void main(String[] args) {
@@ -22,7 +24,7 @@ public class HangmanMain
             switch (choice) {
                 case 1 -> HangmanRules.displayRules();
                 case 2 -> {
-                    System.out.println("Game Starting");
+                    System.out.println("Game Starting...");
                     game.startGame();
                 }
                 case 0 -> running = false;

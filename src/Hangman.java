@@ -14,7 +14,7 @@ public class Hangman {
     Scanner input = new Scanner(System.in);
 
     public Hangman (){
-        //Adding 5 different words to list
+        //Adding 8 different words to list
         wordsList.add("Billy");
         wordsList.add("College");
         wordsList.add("Basketball");
@@ -23,18 +23,16 @@ public class Hangman {
         wordsList.add("Freeport");
         wordsList.add("Queens");
         wordsList.add("Nordstrom");
+        wordsList.add("Playstation");
+
+
 
     }
 
     public void startGame(){
-        Random rand = new Random();
-        //generates a random word from the arrayList of words created
-        String randomWord = wordsList.get(rand.nextInt(wordsList.size()));
-        //handles case insensitivity
-        randomWord = randomWord.toLowerCase();
+        String randomWord = getRandomWord();
 
         //System.out.println(randomWord);
-
         StringBuilder hiddenWord = displayGameWord(randomWord);
         System.out.println("\n"+ hiddenWord + "\n");
 
@@ -55,7 +53,6 @@ public class Hangman {
                 //Wrong entry condition
                 if (!guessedCorrectly) {
                     incorrectGuesses++;
-
                     //Lose Condition
                     if (incorrectGuesses == maxGuesses){
                         System.out.println("All out of Guesses! The word was: " + randomWord.toUpperCase());
@@ -77,7 +74,29 @@ public class Hangman {
 
 
 
+        clearGame();
+
     }
+    /*
+    Empties letter bank, resets incorrect guesses to 0
+     */
+    public void clearGame(){
+        guessedLetters.clear();
+        incorrectGuesses = 0;
+    }
+
+    /*
+    Generates a random word from the list of words created and returns it
+     */
+    private String getRandomWord(){
+        Random rand = new Random();
+
+        String randomWord = wordsList.get(rand.nextInt(wordsList.size()));
+
+        return randomWord.toLowerCase();
+    }
+
+
     private boolean updateHiddenWord(String word, StringBuilder hiddenWord, char guess){
         boolean guessedCorrectly = false;
         for (int i = 0; i < word.length(); i++) {
