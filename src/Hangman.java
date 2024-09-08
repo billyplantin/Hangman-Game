@@ -5,7 +5,7 @@ public class Hangman {
     //initialize array list for hangman
     private ArrayList<String> wordsList = new ArrayList<>();
 
-    private Set<Character> guessedLetters = new HashSet<>();
+    private Set<Character> guessedLetters;
 
     private int incorrectGuesses = 0;
 
@@ -25,11 +25,16 @@ public class Hangman {
         wordsList.add("Nordstrom");
         wordsList.add("Playstation");
 
+        guessedLetters = new HashSet<>();
+
 
 
     }
 
     public void startGame(){
+        //resets letter bank and guesses count
+        clearGame();
+
         String randomWord = getRandomWord();
 
         //System.out.println(randomWord);
@@ -71,16 +76,14 @@ public class Hangman {
                 break;
             }
         }
-
-
-
-        clearGame();
-
+        handleGameRestart();
     }
+
+
     /*
     Empties letter bank, resets incorrect guesses to 0
      */
-    public void clearGame(){
+    private void clearGame(){
         guessedLetters.clear();
         incorrectGuesses = 0;
     }
@@ -120,7 +123,6 @@ public class Hangman {
      */
     private StringBuilder displayGameWord(String word){
         StringBuilder hiddenWord = new StringBuilder();
-
         //creates word hidden by underscores to be unlocked
         hiddenWord.append("_".repeat(word.length()));
 
@@ -128,8 +130,27 @@ public class Hangman {
         if (hiddenWord.length() != word.length()){
             System.out.println("Application Error");
         }
-
         return hiddenWord;
+    }
+
+    private void handleGameRestart(){
+        //Restart Game Option
+        System.out.println("Press 1 to Restart. Press 0 to Return to Main Menu");
+
+        int choice = input.nextInt();
+
+        switch (choice){
+            case 1:
+                startGame();
+                break;
+            case 0:
+                System.out.println("Returning to Main Menu...");
+                break;
+            default:
+                System.out.println("Invalid Choice. Returning to Main Menu");
+                break;
+
+        }
     }
     /*public String formatHiddenWord(String hiddenWord){
         StringBuilder formatted = new StringBuilder();

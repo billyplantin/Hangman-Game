@@ -11,7 +11,7 @@ public class HangmanMain
         boolean running = true;
 //--------------------------------------
 
-        System.out.println("Welcome to Hangman v1\n");
+        System.out.println("Welcome to Hangman!\n");
 
 
 
@@ -26,6 +26,7 @@ public class HangmanMain
                 case 2 -> {
                     System.out.println("Game Starting...");
                     game.startGame();
+
                 }
                 case 0 -> running = false;
                 default -> System.out.println("Illegal character pressed\n");
